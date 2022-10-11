@@ -11,16 +11,16 @@ def bqClient(project: str = 'portfolio-project-353016') -> bigquery.Client:
     '''
 
     while True:
-        # try:
-        test = f'''SELECT EXISTS(SELECT schema_name FROM {project}.INFORMATION_SCHEMA.SCHEMATA)'''
-        client = bigquery.Client(project)
-        conn = client.query(test)
-        conn.result()
-        break
-    #     except DefaultCredentialsError:
-    #         print('not authenticated, running gcloud authenticator')
-    #         subprocess.getoutput('gcloud auth login --update-adc')
-    # print('successful gcloud authentication check')
+        try:
+            test = f'''SELECT EXISTS(SELECT schema_name FROM {project}.INFORMATION_SCHEMA.SCHEMATA)'''
+            client = bigquery.Client(project)
+            conn = client.query(test)
+            conn.result()
+            break
+        except DefaultCredentialsError:
+            print('not authenticated, running gcloud authenticator')
+            subprocess.getoutput('gcloud auth login --update-adc')
+    print('successful gcloud authentication check')
     return client
 
 
