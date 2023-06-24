@@ -1,13 +1,13 @@
 from google.cloud import bigquery
 from google.auth.exceptions import DefaultCredentialsError
-import os, sys, subprocess
+import sys, subprocess
 
 
 
-projectname = os.environ.get('GCP_PROJECT')
 
 
-def bqClient(project: str = projectname) -> bigquery.Client:
+
+def bqClient(project: str) -> bigquery.Client:
     '''
     Runs authentication test query for gcloud CLI and returns bigquery Client Object.\n
     If no default authentication is found, runs 'gcloud auth login --update-adc' for user to set default login credentials.\n
